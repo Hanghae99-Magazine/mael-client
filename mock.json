@@ -1,9 +1,26 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
-  }
+  "posts": [
+    {
+      "post_id": 1,
+      "nickname": "hello",
+      "post_img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      "post_content": "테스트용 데이터",
+      "post_like": 12,
+      "upload_date": "2022-02-19 12:23:34"
+    },
+    {
+      "post_id": 2,
+      "nickname": "hello",
+      "post_img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      "post_content": "테스트용 두번째 데이터",
+      "post_like": 12,
+      "upload_date": "2022-02-19 14:23:34"
+    }
+  ],
+  "user": [
+    {
+      "user_id": "testid",
+      "user_pw": "testpw"
+    }
+  ]
+}

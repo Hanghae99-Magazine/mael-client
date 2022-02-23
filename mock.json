@@ -1,26 +1,35 @@
 {
-  "posts": [
+  "post": {
+    "posts": [
+      {
+        "postId": 1,
+        "userId": "test",
+        "nickname": "hello",
+        "img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+        "content": "테스트용 데이터",
+        "post_like": 12,
+        "createdAt": "2022-02-23T01:57:34.000Z",
+        "updatedAt": "2022-02-23T01:58:11.000Z"
+      },
+      {
+        "postId": 2,
+        "userId": "test",
+        "nickname": "hello",
+        "img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+        "content": "테스트용 데이터",
+        "post_like": 12,
+        "createdAt": "2022-02-23T01:57:40.000Z",
+        "updatedAt": "2022-02-23T01:57:40.000Z"
+      }
+    ]
+  },
+  "users": [
     {
-      "post_id": 1,
-      "nickname": "hello",
-      "post_img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      "post_content": "테스트용 데이터",
-      "post_like": 12,
-      "upload_date": "2022-02-19 12:23:34"
-    },
-    {
-      "post_id": 2,
-      "nickname": "hello",
-      "post_img": "https://images.unsplash.com/photo-1645305782767-a2c931555cce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      "post_content": "테스트용 두번째 데이터",
-      "post_like": 12,
-      "upload_date": "2022-02-19 14:23:34"
+      "userId": "test",
+      "userPw": "1234",
+      "nickname": "mael"
     }
   ],
-  "user": [
-    {
-      "user_id": "testid",
-      "user_pw": "testpw"
-    }
-  ]
+  "login": [],
+  "register": []
 }

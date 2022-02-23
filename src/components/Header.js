@@ -6,7 +6,7 @@ const Header = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
 
   useEffect(() => {
-    let cookie = getCookie("user_id");
+    let cookie = getCookie("userId");
     console.log(cookie);
     if (cookie) {
       setIsLoggedin(true);
@@ -24,7 +24,7 @@ const Header = () => {
 
 const Loggedin = () => {
   const logout = () => {
-    deleteCookie("user_id");
+    deleteCookie("userId");
   };
   return (
     <div className="header">

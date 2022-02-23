@@ -136,6 +136,15 @@ register .text-input {
   border: none;
   box-sizing: border-box;
 }
+.goRegi {
+  display: block;
+  text-align: center;
+  color: #e3e3e3;
+  padding-top: 30px;
+}
+.goRegi:hover {
+  color: #e3e3e3;
+}
 
 /* Card */
 

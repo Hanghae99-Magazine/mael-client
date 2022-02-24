@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCookie, getCookie } from "../cookie";
+import { logOut } from "../redux/userSlice";
 
 const Header = () => {
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const is_login = useSelector((state) => state.user.isLoggedin);
+  console.log("is_login", is_login);
+  const token = sessionStorage.getItem("mytoken");
+  console.log("token", token);
 
-  useEffect(() => {
-    let cookie = getCookie("userId");
-    console.log(cookie);
-    if (cookie) {
-      setIsLoggedin(true);
-    } else {
-      setIsLoggedin(false);
-    }
-  }, []);
-
-  if (isLoggedin) {
+  if (token && is_login) {
     return <Loggedin />;
   } else {
     return <NotLoggedin />;
@@ -23,9 +18,8 @@ const Header = () => {
 };
 
 const Loggedin = () => {
-  const logout = () => {
-    deleteCookie("userId");
-  };
+  const dispatch = useDispatch();
+
   return (
     <div className="header">
       <div className="wrap">
@@ -37,7 +31,12 @@ const Loggedin = () => {
             <span>알림</span>
             <span className="hd-badge">0</span>
           </Link>
-          <button className="hd-btn" onClick={logout}>
+          <button
+            className="hd-btn"
+            onClick={() => {
+              dispatch(logOut());
+            }}
+          >
             로그아웃
           </button>
         </div>

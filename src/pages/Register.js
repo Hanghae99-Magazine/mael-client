@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { BtnConfirm } from "../components/Buttons";
 import { Text } from "../components/Inputs";
-import { useDispatch } from "react-redux";
-import { register } from "../redux/userSlice";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     user_id: "",
     nickname: "",
     user_pw: "",
-    pw_Check: "",
+    pw_check: "",
   });
 
   const onChange = (e) => {
@@ -22,11 +21,19 @@ const Register = () => {
     });
   };
   const handleClick = () => {
-    // console.log("아이디 :", user.user_id);
-    // console.log("닉네임 :", user.nickname);
-    // console.log("비밀번호 :", user.user_pw);
-    // console.log("비밀번호 확인 :", user.pw_Check);
-    dispatch(register(user));
+    const userData = {
+      user_id: user.user_id,
+      nickname: user.nickname,
+      user_pw: user.user_pw,
+      pw_check: user.pw_check,
+    };
+    axios.post("http://3.36.75.239/register", userData).then((response) => {
+      console.log(response);
+      window.alert(response.data.msg);
+      if (response.statusText === "Created") {
+        navigate("/login");
+      }
+    });
   };
   console.log(user);
   return (
@@ -62,8 +69,8 @@ const Register = () => {
             type="password"
             title="비밀번호 확인"
             placeholder="비밀번호를 입력해주세요"
-            name="pw_Check"
-            value={user.pw_Check}
+            name="pw_check"
+            value={user.pw_check}
             onChange={onChange}
           />
           <BtnConfirm title="Sign up" onClick={handleClick} />

@@ -6,8 +6,8 @@ export const getPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await axios
-        .get("http://localhost:4000/post")
-        // .get("http://3.36.75.239/post")
+        // .get("http://localhost:4000/post")
+        .get("http://3.36.75.239/post")
         .then((response) => response.data);
       // .then((response) => console.log(response.data));
     } catch (error) {
@@ -33,3 +33,5 @@ export const postReducer = createSlice({
 export default postReducer.reducer;
 
 // 3.36.75.239 id: won1 pw: won12
+// won3 won13
+// http://hyoc.shop/

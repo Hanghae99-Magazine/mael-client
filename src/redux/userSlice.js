@@ -3,32 +3,15 @@ import axios from "axios";
 
 const userState = {
   user: {
-    userId: "",
+    user_id: "",
     nickname: "",
-    userPw: "",
-    pwCheck: "",
+    user_pw: "",
+    mytoken: "",
   },
   isLoading: false,
   loginError: "",
   isLoggedin: false,
-  registerError: "",
-  registerDone: false,
 };
-
-//회원가입
-export const register = createAsyncThunk(
-  "user/register",
-  async (_, { rejectWithValue }) => {
-    try {
-      return await axios
-        .post("http://localhost:4000/user/register")
-        .then((response) => response.data);
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
 
 //로그인
 export const login = createAsyncThunk(
@@ -36,15 +19,22 @@ export const login = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await axios
-        .post("http://3.36.75.239/login")
-        // .get("http://localhost:4000/users")
-        .then((response) => response.data);
+        .post("http://3.36.75.239/login", _)
+        .then((response) => response.data)
+        .then((response) => {
+          sessionStorage.setItem("mytoken", response.mytoken);
+          console.log(response);
+        });
     } catch (error) {
       console.error(error);
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response);
     }
   }
 );
+
+export const logOut = createAsyncThunk("user/logout", async () => {
+  sessionStorage.removeItem("mytoken");
+});
 
 export const userReducer = createSlice({
   name: "user",
@@ -52,18 +42,6 @@ export const userReducer = createSlice({
   reducer: {},
   extraReducers: (builder) => {
     builder
-      //회원가입
-      .addCase(register.pending, () => {
-        console.log("pending");
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.user = action.payload;
-        state.registerDone = true;
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.registerError = action.payload;
-      })
       //로그인
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -78,8 +56,13 @@ export const userReducer = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoading = true;
         state.loginError = action.payload;
-      });
-    //로그아웃
+      })
+      // 로그아웃
+      .addCase(logOut.pending, (state, action) => {})
+      .addCase(logOut.fulfilled, (state, action) => {
+        state.isLoggedin = false;
+      })
+      .addCase(logOut.rejected, (state, action) => {});
   },
 });
 

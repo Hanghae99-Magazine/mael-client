@@ -17,12 +17,12 @@ const CardList = () => {
       {posts &&
         posts.map((post) => (
           <Card
-            name={post.userId}
-            image={post.img}
-            desc={post.content}
-            // like={data.post_like}
-            date={post.createdAt}
-            key={post.postId}
+            name={post.nickname}
+            image={post.post_img}
+            desc={post.post_content}
+            like={post.post_like}
+            date={post.upload_date}
+            key={post.post_id}
           />
         ))}
     </div>

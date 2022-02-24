@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { BtnConfirm } from "../components/Buttons";
 import { Text } from "../components/Inputs";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/userSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     user_id: "",
@@ -27,12 +29,12 @@ const Register = () => {
       user_pw: user.user_pw,
       pw_check: user.pw_check,
     };
-    axios.post("http://3.36.75.239/register", userData).then((response) => {
+    dispatch(register(userData)).then((response) => {
       console.log(response);
-      window.alert(response.data.msg);
-      // if (response.statusText === "Created") {
-      //   navigate("/login");
-      // }
+      window.alert(response.payload.data.msg);
+      if (response.payload.statusText === 200) {
+        navigate("/login");
+      }
     });
   };
   // console.log(user);

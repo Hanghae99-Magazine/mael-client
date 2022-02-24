@@ -31,6 +31,9 @@ input,
 textarea {
   font-family: "Noto Sans CJK KR";
 }
+br {
+  white-space: pre-wrap;
+}
 
 button {
   font-family: "Noto Sans CJK KR";
@@ -204,6 +207,7 @@ register .text-input {
 }
 .card-desc {
   padding: 10px;
+  white-space: pre-wrap;
 }
 
 /* Write */

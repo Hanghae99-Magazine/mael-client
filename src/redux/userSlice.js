@@ -11,7 +11,23 @@ const userState = {
   isLoading: false,
   loginError: "",
   isLoggedin: false,
+  registerError: "",
+  registerDone: false,
 };
+// 회원가입
+export const register = createAsyncThunk(
+  "user/register",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await axios
+        .post("http://3.36.75.239/register", _)
+        .then((response) => response.data);
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error.response);
+    }
+  }
+);
 
 //로그인
 export const login = createAsyncThunk(
@@ -32,9 +48,13 @@ export const login = createAsyncThunk(
   }
 );
 
+// 로그아웃
 export const logOut = createAsyncThunk("user/logout", async () => {
   sessionStorage.removeItem("mytoken");
 });
+
+// 로그인 정보 확인
+export const loginCheck = createAsyncThunk("userCheck", async () => {});
 
 export const userReducer = createSlice({
   name: "user",
@@ -42,6 +62,17 @@ export const userReducer = createSlice({
   reducer: {},
   extraReducers: (builder) => {
     builder
+      // 회원가입
+      .addCase(register.pending, (state, action) => {
+        console.log("pending");
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.registerDone = true;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.registerError = action.payload;
+      })
       //로그인
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -62,7 +93,13 @@ export const userReducer = createSlice({
       .addCase(logOut.fulfilled, (state, action) => {
         state.isLoggedin = false;
       })
-      .addCase(logOut.rejected, (state, action) => {});
+      .addCase(logOut.rejected, (state, action) => {})
+      // 로그인 체크
+      .addCase(loginCheck.pending, (state, action) => {})
+      .addCase(loginCheck.fulfilled, (state, action) => {
+        state.isLoggedin = true;
+      })
+      .addCase(loginCheck.rejected, (state, action) => {});
   },
 });
 

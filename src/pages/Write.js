@@ -8,17 +8,22 @@ import { uploadPost } from "../redux/postSlice";
 const Write = () => {
   const dispatch = useDispatch();
 
+  // 인풋 파일
   const [file, setFile] = useState("");
+  // 미리보기 주소
   const [previewURL, setPreviewURL] = useState("");
+  // 미리보기
   const [preview, setPreview] = useState(null);
+  // 파일 이름
   const [filename, setFilename] = useState("");
   // 포지션
   const [selected, setSelected] = useState("default");
-  // 이미지 url
-  const [postImg, setPostImg] = useState("");
   // 컨텐츠
   const [content, setContent] = useState("");
+
+  // input file hidden
   const fileRef = useRef();
+  // testarea 자동 높이
   const heightRef = useRef();
 
   useEffect(() => {

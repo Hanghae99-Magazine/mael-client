@@ -23,6 +23,7 @@ const CardList = () => {
             like={post.post_like}
             date={post.upload_date}
             key={post.post_id}
+            position={post.img_position}
           />
         ))}
     </div>

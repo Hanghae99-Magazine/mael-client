@@ -274,3 +274,24 @@ register .text-input {
 .write .post-text {
   margin-bottom: 20px;
 }
+.pp-inbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+.position-input + label {
+  flex-basis: 30%;
+  flex-shrink: 1;
+  display: block;
+  border: 1px solid #e3e3e3;
+  /* width: 100%; */
+  text-align: center;
+  padding: 20px;
+  color: #e3e3e3;
+  cursor: pointer;
+}
+.position-input[type="radio"]:checked + label {
+  background-color: #e3e3e3;
+  color: #005353;
+}

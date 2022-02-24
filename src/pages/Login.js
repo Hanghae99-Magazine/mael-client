@@ -38,7 +38,7 @@ const Login = () => {
       }
     });
   };
-  console.log(user);
+  // console.log(user);
   return (
     <div className="login">
       <div className="wrapper">

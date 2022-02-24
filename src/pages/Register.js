@@ -30,12 +30,12 @@ const Register = () => {
     axios.post("http://3.36.75.239/register", userData).then((response) => {
       console.log(response);
       window.alert(response.data.msg);
-      if (response.statusText === "Created") {
-        navigate("/login");
-      }
+      // if (response.statusText === "Created") {
+      //   navigate("/login");
+      // }
     });
   };
-  console.log(user);
+  // console.log(user);
   return (
     <div className="login">
       <div className="wrapper">

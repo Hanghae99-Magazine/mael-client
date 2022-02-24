@@ -6,7 +6,7 @@ import { getPosts } from "../redux/postSlice";
 const CardList = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts.posts);
-  console.log(posts);
+  // console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());

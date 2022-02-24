@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
         .then((response) => response.data)
         .then((response) => {
           sessionStorage.setItem("mytoken", response.mytoken);
-          console.log(response);
+          // console.log(response);
         });
     } catch (error) {
       console.error(error);

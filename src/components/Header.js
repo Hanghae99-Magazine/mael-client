@@ -6,9 +6,9 @@ import { logOut } from "../redux/userSlice";
 
 const Header = () => {
   const is_login = useSelector((state) => state.user.isLoggedin);
-  console.log("is_login", is_login);
+  // console.log("is_login", is_login);
   const token = sessionStorage.getItem("mytoken");
-  console.log("token", token);
+  // console.log("token", token);
 
   if (token && is_login) {
     return <Loggedin />;
@@ -27,7 +27,13 @@ const Loggedin = () => {
           <h1 className="logo">MAGAZINE</h1>
         </Link>
         <div className="btn-wrap">
-          <Link className="hd-btn" to="">
+          <Link
+            className="hd-btn"
+            to=""
+            onClick={() => {
+              window.alert("준비중 ㅠㅠ");
+            }}
+          >
             <span>알림</span>
             <span className="hd-badge">0</span>
           </Link>

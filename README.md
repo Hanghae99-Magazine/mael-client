@@ -2,12 +2,16 @@
 
 ## 기술 스택
 
-react
-redux-toolkit
+<ul>
+  <li>react</li>
+  <li>redux-toolkit</li>
+</ul>
 
 ## 구현 기능
 
-로그인, 회원가입
-게시글 목록
-게시글 작성
-게시글 삭제
+<ul>
+  <li>로그인, 회원가입</li>
+  <li>게시글 목록</li>
+  <li>게시글 작성</li>
+  <li>게시글 삭제</li>
+</ul>

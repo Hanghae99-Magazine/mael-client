@@ -8,6 +8,7 @@ import Main from "../pages/Main";
 import Register from "../pages/Register";
 import Write from "../pages/Write";
 import DelComplete from "../pages/DelComplete";
+import Modify from "../pages/Modify";
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path=":postId/modify" element={<Modify />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="write" element={<Write />} />

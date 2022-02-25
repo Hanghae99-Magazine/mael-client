@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Card = (props) => {
   const { name, date, image, like, desc, position, postId } = props;
   const likeState = useSelector((state) => state.like.like_check);
-  console.log(likeState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -51,7 +50,7 @@ const Card = (props) => {
   };
 
   const handleModify = () => {
-    console.log("수정");
+    navigate(`${postId}/modify`, { state: props });
   };
 
   const handleDelete = () => {

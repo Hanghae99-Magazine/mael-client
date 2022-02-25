@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Moment from "react-moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/postSlice";
 import { likeClick } from "../redux/likeSlice";
 import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
-  const { name, date, image, like, desc, position, postId } = props;
-  const likeState = useSelector((state) => state.like.like_check);
+  const { name, date, image, likeCount, likeList, desc, position, postId } =
+    props;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,12 +23,20 @@ const Card = (props) => {
     } else {
       setVislble(false);
     }
-  }, []);
+  }, [myNick, name]);
+
+  useEffect(() => {
+    if (likeList.includes(myNick)) {
+      setLikeToggled(true);
+    } else {
+      setLikeToggled(false);
+    }
+  }, [likeList, myNick]);
 
   const handleToggle = () => {
     dispatch(likeClick(postId)).then((response) => {
       console.log(response);
-      if (likeClick) {
+      if (!likeToggled) {
         setLikeToggled(true);
       } else {
         setLikeToggled(false);
@@ -97,7 +106,7 @@ const Card = (props) => {
               <MdFavoriteBorder fontSize="28" />
             )}
           </button>
-          <span>좋아요 {like}개</span>
+          <span>좋아요 {likeCount}개</span>
         </div>
         <div className="card-desc">
           <p>{desc}</p>
@@ -144,7 +153,7 @@ const Card = (props) => {
                 <MdFavoriteBorder fontSize="20" />
               )}
             </button>
-            <span>좋아요 {like}개</span>
+            <span>좋아요 {likeCount}개</span>
           </div>
           <div className="card-date">
             <span>{displayCreatedAt(date)}</span>
@@ -184,7 +193,7 @@ const Card = (props) => {
                 <MdFavoriteBorder fontSize="20" />
               )}
             </button>
-            <span>좋아요 {like}개</span>
+            <span>좋아요 {likeCount}개</span>
           </div>
           <div className="card-date">
             <span>{displayCreatedAt(date)}</span>

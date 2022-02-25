@@ -32,7 +32,7 @@ const Register = () => {
     dispatch(register(userData)).then((response) => {
       console.log(response);
       window.alert(response.payload.data.msg);
-      if (response.payload.statusText === 200) {
+      if (response.payload.status === 200) {
         navigate("/login");
       }
     });

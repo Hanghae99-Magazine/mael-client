@@ -6,11 +6,8 @@ import { logOut } from "../redux/userSlice";
 
 const Header = () => {
   const is_login = useSelector((state) => state.user.isLoggedin);
-  // console.log("is_login", is_login);
-  const token = sessionStorage.getItem("mytoken");
-  // console.log("token", token);
 
-  if (token && is_login) {
+  if (is_login) {
     return <Loggedin />;
   } else {
     return <NotLoggedin />;

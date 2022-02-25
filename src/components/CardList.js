@@ -20,7 +20,8 @@ const CardList = () => {
             name={post.nickname}
             image={post.post_img}
             desc={post.post_content}
-            like={post.post_like}
+            likeCount={post.post_like}
+            likeList={post.like_list}
             date={post.upload_date}
             key={post.post_id}
             postId={post.post_id}

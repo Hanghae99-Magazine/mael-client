@@ -1,19 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const mytoken = sessionStorage.getItem("mytoken");
+import { URL } from "../API.ts";
 
 export const likeClick = createAsyncThunk(
   "like/likeClick",
   async (postId, { rejectWithValue }) => {
     try {
-      return await axios
-        .put(`http://3.36.75.239/post/${postId}/like`, postId, {
-          headers: {
-            Authorization: `Bearer ${mytoken}`,
-          },
-        })
-        .then((response) => response.data);
+      return await URL.put(`/post/${postId}/like`, postId).then(
+        (response) => response.data
+      );
     } catch (error) {
       console.error(error);
       return rejectWithValue(error.response.data);

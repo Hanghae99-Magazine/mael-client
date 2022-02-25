@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { URL } from "../API.ts";
 
 const userState = {
   user: {
@@ -14,14 +14,13 @@ const userState = {
   registerError: "",
   registerDone: false,
 };
+
 // 회원가입
 export const register = createAsyncThunk(
   "user/register",
   async (_, { rejectWithValue }) => {
     try {
-      return await axios
-        .post("http://3.36.75.239/register", _)
-        .then((response) => response.data);
+      return await URL.post("/register", _).then((response) => response.data);
     } catch (error) {
       console.error(error);
       return rejectWithValue(error.response);
@@ -34,13 +33,11 @@ export const login = createAsyncThunk(
   "user/login",
   async (_, { rejectWithValue }) => {
     try {
-      return await axios
-        .post("http://3.36.75.239/login", _)
+      return await URL.post("/login", _)
         .then((response) => response.data)
         .then((response) => {
           sessionStorage.setItem("mytoken", response.mytoken);
           sessionStorage.setItem("nickname", response.nickname);
-          // console.log(response);
         });
     } catch (error) {
       console.error(error);
@@ -83,8 +80,6 @@ export const userReducer = createSlice({
         state.isLoading = false;
         state.isLoggedin = true;
         state.user = action.payload;
-        // state.user.userId = action.payload.userId;
-        // state.user.nickname = action.payload.nickname;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = true;

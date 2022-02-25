@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Moment from "react-moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../redux/postSlice";
+import { likeClick } from "../redux/likeSlice";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
   const { name, date, image, like, desc, position, postId } = props;
+  const likeState = useSelector((state) => state.like.like_check);
+  console.log(likeState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [likeToggled, setLikeToggled] = useState(false);
   const [visible, setVislble] = useState(false);
@@ -21,7 +26,14 @@ const Card = (props) => {
   }, []);
 
   const handleToggle = () => {
-    setLikeToggled((likeToggled) => !likeToggled);
+    dispatch(likeClick(postId)).then((response) => {
+      console.log(response);
+      if (likeClick) {
+        setLikeToggled(true);
+      } else {
+        setLikeToggled(false);
+      }
+    });
   };
 
   const displayCreatedAt = (date) => {
@@ -43,9 +55,14 @@ const Card = (props) => {
   };
 
   const handleDelete = () => {
-    dispatch(deletePost(postId)).then((response) => {
-      console.log(response);
-    });
+    if (window.confirm("게시글을 삭제하시겠습니까?")) {
+      dispatch(deletePost(postId)).then((response) => {
+        console.log(response);
+        navigate("/deletecomplete");
+      });
+    } else {
+      alert("취소하셨습니다.");
+    }
   };
 
   if (position === "default") {

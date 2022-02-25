@@ -368,3 +368,23 @@ register .text-input {
   background-color: #e3e3e3;
   color: #005353;
 }
+
+/* 삭제 완료 페이지 */
+
+.delcom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.delcom p {
+  font-size: 1.25rem;
+  color: #e3e3e3;
+  padding-bottom: 30px;
+}
+.delcom a {
+  color: #a7a7a7;
+}
+.delcom a:hover {
+  color: #e3e3e3;
+}

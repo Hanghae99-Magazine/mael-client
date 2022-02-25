@@ -151,6 +151,7 @@ register .text-input {
 
 /* Card */
 
+/* default position */
 .card-list {
   padding: 0 0 60px;
 }
@@ -174,6 +175,10 @@ register .text-input {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.card-date span {
+  font-size: 12px;
+  color: #a7a7a7;
 }
 .card-date button {
   padding: 4px 10px;
@@ -209,6 +214,72 @@ register .text-input {
   padding: 10px;
   white-space: pre-wrap;
 }
+.card-comment {
+  padding: 10px;
+  border-top: 1px solid #7f9797;
+}
+.card-comment .title {
+  font-size: 1rem;
+}
+.card-comment .default-msg {
+  color: #a7a7a7;
+  font-size: 14px;
+}
+
+/* left position */
+.card-left {
+  display: flex;
+  justify-content: center;
+  background-color: #e3e3e3;
+  margin-bottom: 20px;
+}
+.card-left .card-image {
+  flex-basis: 50%;
+}
+.card-contents {
+  flex-basis: 50%;
+  height: 100%;
+  width: 100%;
+}
+.card-content-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #005353;
+}
+.card-contents .nickname {
+  font-size: 1rem;
+  font-weight: normal;
+}
+.card-mod button {
+  padding: 4px 10px;
+  color: #005353;
+  background-color: #e3e3e3;
+  border: solid 1px #005353;
+  border-radius: 4px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.card-mod button:hover {
+  background-color: #005353;
+  color: #e3e3e3;
+}
+.card-contents .card-like {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.card-contents .card-date {
+  display: block;
+  font-size: 12px;
+  color: #a7a7a7;
+  padding: 5px 10px;
+}
+
+/* right position */
 
 /* Write */
 
@@ -224,8 +295,6 @@ register .text-input {
   padding-bottom: 40px;
 }
 .write .img-url {
-  /* flex-basis: 90%;
-  flex-shrink: 1; */
   padding: 10px;
   width: 100%;
   height: 50px;

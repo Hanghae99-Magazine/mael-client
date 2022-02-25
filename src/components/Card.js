@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Moment from "react-moment";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../redux/postSlice";
 
 const Card = (props) => {
-  const { name, date, image, like, desc, position } = props;
-  const [isToggled, setIsToggled] = useState(false);
+  const { name, date, image, like, desc, position, postId } = props;
+  const dispatch = useDispatch();
 
+  const [likeToggled, setLikeToggled] = useState(false);
   const [visible, setVislble] = useState(false);
-
   const myNick = sessionStorage.getItem("nickname");
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const Card = (props) => {
   }, []);
 
   const handleToggle = () => {
-    setIsToggled((isToggled) => !isToggled);
+    setLikeToggled((likeToggled) => !likeToggled);
   };
 
   const displayCreatedAt = (date) => {
@@ -36,55 +38,157 @@ const Card = (props) => {
     }
   };
 
-  return (
-    <div className="card">
-      <div className="card-top">
-        <h2 className="nickname">{name}</h2>
-        <div className="card-date">
-          <span>{displayCreatedAt(date)}</span>
-          {visible ? (
-            <button
-              onClick={() => {
-                console.log("수정");
-              }}
-            >
-              수정
-            </button>
-          ) : (
-            <></>
-          )}
-          {/* <button
-            onClick={() => {
-              console.log("수정");
-            }}
-          >
-            수정
-          </button> */}
+  const handleModify = () => {
+    console.log("수정");
+  };
+
+  const handleDelete = () => {
+    dispatch(deletePost(postId)).then((response) => {
+      console.log(response);
+    });
+  };
+
+  if (position === "default") {
+    return (
+      <div className="card">
+        <div className="card-top">
+          <h2 className="nickname">{name}</h2>
+          <div className="card-date">
+            <span>{displayCreatedAt(date)}</span>
+            {visible ? (
+              <>
+                <button onClick={handleModify}>수정</button>
+                <button onClick={handleDelete}>삭제</button>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+        <div
+          className="card-image"
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
+        <div className="card-bottom">
+          <button className="btn-like" onClick={handleToggle}>
+            {likeToggled ? (
+              <MdFavorite fontSize="28" />
+            ) : (
+              <MdFavoriteBorder fontSize="28" />
+            )}
+          </button>
+          <span>좋아요 {like}개</span>
+        </div>
+        <div className="card-desc">
+          <p>{desc}</p>
+        </div>
+        <div className="card-comment">
+          <p className="title">comments</p>
+          <p className="default-msg">nothing in here...</p>
         </div>
       </div>
-      <div
-        className="card-image"
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></div>
-      <div className="card-bottom">
-        <button className="btn-like" onClick={handleToggle}>
-          {isToggled ? (
-            <MdFavorite fontSize="28" />
-          ) : (
-            <MdFavoriteBorder fontSize="28" />
-          )}
-        </button>
-        <span>좋아요 {like}개</span>
+    );
+  } else if (position === "left") {
+    return (
+      <div className="card-left">
+        <div
+          className="card-image"
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
+        <div className="card-contents">
+          <div className="card-content-top">
+            <h2 className="nickname">{name}</h2>
+            <div className="card-mod">
+              {visible ? (
+                <>
+                  <button onClick={handleModify}>수정</button>
+                  <button onClick={handleDelete}>삭제</button>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+          <div className="card-desc">
+            <p>{desc}</p>
+          </div>
+          <div className="card-like">
+            <button className="btn-like" onClick={handleToggle}>
+              {likeToggled ? (
+                <MdFavorite fontSize="20" />
+              ) : (
+                <MdFavoriteBorder fontSize="20" />
+              )}
+            </button>
+            <span>좋아요 {like}개</span>
+          </div>
+          <div className="card-date">
+            <span>{displayCreatedAt(date)}</span>
+          </div>
+          <div className="card-comment">
+            <p className="title">comments</p>
+            <p className="default-msg">nothing in here...</p>
+          </div>
+        </div>
       </div>
-      <div className="card-desc">
-        <p>{desc}</p>
+    );
+  } else {
+    return (
+      <div className="card-left">
+        <div className="card-contents">
+          <div className="card-content-top">
+            <h2 className="nickname">{name}</h2>
+            <div className="card-mod">
+              {visible ? (
+                <>
+                  <button onClick={handleModify}>수정</button>
+                  <button onClick={handleDelete}>삭제</button>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+          <div className="card-desc">
+            <p>{desc}</p>
+          </div>
+          <div className="card-like">
+            <button className="btn-like" onClick={handleToggle}>
+              {likeToggled ? (
+                <MdFavorite fontSize="20" />
+              ) : (
+                <MdFavoriteBorder fontSize="20" />
+              )}
+            </button>
+            <span>좋아요 {like}개</span>
+          </div>
+          <div className="card-date">
+            <span>{displayCreatedAt(date)}</span>
+          </div>
+          <div className="card-comment">
+            <p className="title">comments</p>
+            <p className="default-msg">nothing in here...</p>
+          </div>
+        </div>
+        <div
+          className="card-image"
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Card;

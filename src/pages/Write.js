@@ -4,9 +4,11 @@ import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useDispatch } from "react-redux";
 import { uploadPost } from "../redux/postSlice";
+import { useNavigate } from "react-router-dom";
 
 const Write = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // 인풋 파일
   const [file, setFile] = useState("");
@@ -86,6 +88,7 @@ const Write = () => {
         dispatch(uploadPost(postData)).then((response) => {
           console.log(response);
           console.log(postData);
+          navigate("/");
         });
       });
     });

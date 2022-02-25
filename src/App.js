@@ -11,7 +11,7 @@ function App() {
     if (mytoken) {
       dispatch(loginCheck());
     }
-  }, []);
+  }, [mytoken, dispatch]);
 
   return (
     <div className="App">

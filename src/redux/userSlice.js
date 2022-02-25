@@ -39,6 +39,7 @@ export const login = createAsyncThunk(
         .then((response) => response.data)
         .then((response) => {
           sessionStorage.setItem("mytoken", response.mytoken);
+          sessionStorage.setItem("nickname", response.nickname);
           // console.log(response);
         });
     } catch (error) {
@@ -51,6 +52,7 @@ export const login = createAsyncThunk(
 // 로그아웃
 export const logOut = createAsyncThunk("user/logout", async () => {
   sessionStorage.removeItem("mytoken");
+  sessionStorage.removeItem("nickname");
 });
 
 // 로그인 정보 확인

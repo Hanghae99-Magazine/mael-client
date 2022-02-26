@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // 컴포넌트
 import { BtnConfirm } from "../components/Buttons";
 import { Text } from "../components/Inputs";
 
 //리덕스
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 
 const Login = () => {
-  const is_login = useSelector((state) => state.user.isLoggedin);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     user_id: "",
@@ -27,18 +25,17 @@ const Login = () => {
     });
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const loginData = {
       user_id: user.user_id,
       user_pw: user.user_pw,
     };
-    dispatch(login(loginData)).then(() => {
-      if (is_login === false) {
-        navigate("/");
-      }
+    dispatch(login(loginData)).then((response) => {
+      console.log(response);
+      window.location.replace("/");
     });
   };
-  // console.log(user);
+
   return (
     <div className="login">
       <div className="wrapper">

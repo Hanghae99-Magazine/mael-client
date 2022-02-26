@@ -15,7 +15,16 @@ const Header = () => {
 };
 
 const Loggedin = () => {
+  const is_login = useSelector((state) => state.user.isLoggedin);
   const dispatch = useDispatch();
+
+  const handleClick = async () => {
+    return await dispatch(logOut()).then(() => {
+      if (is_login === false) {
+        window.alert("로그아웃 되었습니다.");
+      }
+    });
+  };
 
   return (
     <div className="header">
@@ -34,12 +43,7 @@ const Loggedin = () => {
             <span>알림</span>
             <span className="hd-badge">0</span>
           </Link>
-          <button
-            className="hd-btn"
-            onClick={() => {
-              dispatch(logOut());
-            }}
-          >
+          <button className="hd-btn" onClick={handleClick}>
             로그아웃
           </button>
         </div>

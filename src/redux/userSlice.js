@@ -64,12 +64,14 @@ export const userReducer = createSlice({
       // 회원가입
       .addCase(register.pending, (state, action) => {
         console.log("pending");
+        state.registerDone = false;
       })
       .addCase(register.fulfilled, (state, action) => {
         console.log(action.payload);
         state.registerDone = true;
       })
       .addCase(register.rejected, (state, action) => {
+        state.registerDone = false;
         state.registerError = action.payload;
       })
       //로그인

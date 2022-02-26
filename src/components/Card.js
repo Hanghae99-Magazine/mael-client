@@ -41,7 +41,7 @@ const Card = (props) => {
 
   // 좋아요 토글
   const handleToggle = () => {
-    if (is_login) {
+    if (is_login === true) {
       dispatch(likeClick(postId)).then((response) => {
         console.log(response);
         if (!likeToggled) {

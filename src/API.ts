@@ -9,6 +9,6 @@ export const URL: AxiosInstance = axios.create({
   },
 });
 
-// 원진님 http://3.36.75.239/
-// 강효님 http://hyoc.shop/
-// 수현님 http://54.180.142.123/
+// 원진님 http://3.36.75.239
+// 강효님 http://hyoc.shop
+// 수현님 http://54.180.142.123

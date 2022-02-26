@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { BtnConfirm } from "../components/Buttons";
 import { Text } from "../components/Inputs";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/userSlice";
 
 const Register = () => {
+  const registerDone = useSelector((state) => state.user.registerDone);
+  console.log(registerDone);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -22,22 +24,22 @@ const Register = () => {
       [name]: value,
     });
   };
-  const handleClick = () => {
+  const handleClick = async () => {
     const userData = {
       user_id: user.user_id,
       nickname: user.nickname,
       user_pw: user.user_pw,
       pw_check: user.pw_check,
     };
-    dispatch(register(userData)).then((response) => {
+    return await dispatch(register(userData)).then((response) => {
       console.log(response);
       window.alert(response.payload.data.msg);
-      if (response.payload.status === 200) {
+      if (response.payload.msg) {
+        window.alert("회원가입에 성공했습니다.");
         navigate("/login");
       }
     });
   };
-  // console.log(user);
   return (
     <div className="login">
       <div className="wrapper">

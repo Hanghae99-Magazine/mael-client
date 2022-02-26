@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const mytoken = sessionStorage.getItem("mytoken");
+export const mytoken = sessionStorage.getItem("mytoken");
 
 export const URL: AxiosInstance = axios.create({
   baseURL: `${"http://3.36.75.239"}`,

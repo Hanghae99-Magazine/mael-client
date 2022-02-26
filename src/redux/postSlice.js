@@ -25,24 +25,6 @@ export const uploadPost = createAsyncThunk(
   }
 );
 
-// export const deletePost = createAsyncThunk(
-//   "post/delete",
-//   async (data, { rejectWithValue }) => {
-//     try {
-//       return await axios
-//         .delete(`http://3.36.75.239/post/${data}`, {
-//           headers: {
-//             Authorization: `Bearer ${mytoken}`,
-//           },
-//         })
-//         .then((response) => response.data);
-//     } catch (error) {
-//       console.error(error);
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
 export const deletePost = createAsyncThunk(
   "post/delete",
   async (data, { rejectWithValue }) => {
@@ -56,25 +38,6 @@ export const deletePost = createAsyncThunk(
     }
   }
 );
-
-// export const editPost = createAsyncThunk(
-//   "post/edit",
-//   async (data, { rejectWithValue }) => {
-//     try {
-//       return await axios
-//         .put(`http://3.36.75.239/post/${data.postId}`, data, {
-//           headers: {
-//             Authorization: `Bearer ${mytoken}`,
-//           },
-//         })
-//         .then((response) => response.data);
-//     } catch (error) {
-//       console.error(error);
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
 export const editPost = createAsyncThunk(
   "post/edit",
   async (data, { rejectWithValue }) => {

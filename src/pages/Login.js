@@ -30,7 +30,7 @@ const Login = () => {
       user_id: user.user_id,
       user_pw: user.user_pw,
     };
-    dispatch(login(loginData)).then((response) => {
+    return await dispatch(login(loginData)).then((response) => {
       console.log(response);
       window.location.replace("/");
     });

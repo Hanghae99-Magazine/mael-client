@@ -3,10 +3,10 @@ import { URL } from "../API.ts";
 
 const userState = {
   user: {
-    user_id: "",
-    nickname: "",
-    user_pw: "",
-    mytoken: "",
+    // user_id: "",
+    // nickname: "",
+    // user_pw: "",
+    // mytoken: "",
   },
   isLoading: false,
   loginError: "",
@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
   "user/register",
   async (_, { rejectWithValue }) => {
     try {
-      return await URL.post("/register", _).then((response) => response.data);
+      return await URL.post("/register", _).then((response) => response);
     } catch (error) {
       console.error(error);
       return rejectWithValue(error.response);
@@ -31,14 +31,13 @@ export const register = createAsyncThunk(
 //로그인
 export const login = createAsyncThunk(
   "user/login",
-  async (_, { rejectWithValue }) => {
+  async (loginData, { rejectWithValue }) => {
     try {
-      return await URL.post("/login", _)
-        .then((response) => response.data)
-        .then((response) => {
-          sessionStorage.setItem("mytoken", response.mytoken);
-          sessionStorage.setItem("nickname", response.nickname);
-        });
+      return await URL.post("/login", loginData).then((response) => {
+        console.log(response.data);
+        sessionStorage.setItem("mytoken", response.data.mytoken);
+        sessionStorage.setItem("nickname", response.data.nickname);
+      });
     } catch (error) {
       console.error(error);
       return rejectWithValue(error.response);

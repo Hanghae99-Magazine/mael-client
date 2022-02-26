@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { BtnConfirm } from "../components/Buttons";
 import { Text } from "../components/Inputs";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { register } from "../redux/userSlice";
 
 const Register = () => {
-  const registerDone = useSelector((state) => state.user.registerDone);
-  console.log(registerDone);
+  // const registerDone = useSelector((state) => state.user.registerDone);
+  // console.log(registerDone);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -34,7 +34,7 @@ const Register = () => {
     return await dispatch(register(userData)).then((response) => {
       console.log(response);
       window.alert(response.payload.data.msg);
-      if (response.payload.msg) {
+      if (response.payload.status === 201) {
         window.alert("회원가입에 성공했습니다.");
         navigate("/login");
       }

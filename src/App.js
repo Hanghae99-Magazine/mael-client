@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import "./App.css";
+import AppRouter from "./routes/Router";
+import { useDispatch } from "react-redux";
+import { loginCheck } from "./redux/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const mytoken = sessionStorage.getItem("mytoken");
+  useEffect(() => {
+    if (mytoken) {
+      dispatch(loginCheck());
+    }
+  }, [mytoken, dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppRouter />
     </div>
   );
 }

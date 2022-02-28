@@ -1,0 +1,46 @@
+.btnc {
+  background-color: #005353;
+  border: solid 1px #e3e3e3;
+  width: 100%;
+  padding: 20px;
+  color: #e3e3e3;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btnc:hover {
+  background-color: #e3e3e3;
+  color: #005353;
+}
+
+.btnp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: block;
+  padding: 10px 20px;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  background-color: #005353;
+  color: #e3e3e3;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: all 0.2s ease-in-out;
+}
+.btnp:hover {
+  background-color: #e3e3e3;
+  color: #005353;
+  border: 1px solid #005353;
+}
+
+@media screen and (max-width: 600px) {
+  .btnp {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0px;
+    border: none;
+    border-top: 1px solid #e3e3e3;
+  }
+}

@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import Write from "../pages/Write";
 import DelComplete from "../pages/DelComplete";
 import Modify from "../pages/Modify";
+import LogOutComplete from "../pages/LogOutComplete";
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
         <Route path="register" element={<Register />} />
         <Route path="write" element={<Write />} />
         <Route path="deletecomplete" element={<DelComplete />} />
+        <Route path="logout" element={<LogOutComplete />} />
       </Routes>
     </BrowserRouter>
   );

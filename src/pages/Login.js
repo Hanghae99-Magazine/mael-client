@@ -30,9 +30,13 @@ const Login = () => {
       user_id: user.user_id,
       user_pw: user.user_pw,
     };
-    return await dispatch(login(loginData)).then((response) => {
-      console.log(response);
-      window.location.replace("/");
+    return await dispatch(login(loginData)).then((res) => {
+      console.log("res", res);
+      if (res.payload.status === 201) {
+        window.alert("로그인되었습니다.");
+      } else {
+        window.alert(res.payload.data.msg);
+      }
     });
   };
 

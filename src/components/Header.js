@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../redux/userSlice";
 
 const Header = () => {
@@ -15,14 +15,12 @@ const Header = () => {
 };
 
 const Loggedin = () => {
-  const is_login = useSelector((state) => state.user.isLoggedin);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     return await dispatch(logOut()).then(() => {
-      if (is_login === false) {
-        window.alert("로그아웃 되었습니다.");
-      }
+      navigate("/logout");
     });
   };
 

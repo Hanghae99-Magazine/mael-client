@@ -65,29 +65,29 @@ export const postReducer = createSlice({
         state.posts = action.payload;
       })
       // 업로드
-      .addCase(uploadPost.pending, (state, action) => {
+      .addCase(uploadPost.pending, () => {
         console.log("pending");
       })
       .addCase(uploadPost.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
-      .addCase(uploadPost.rejected, (state, action) => {})
+      .addCase(uploadPost.rejected, () => {})
       // 삭제
-      .addCase(deletePost.pending, (state, action) => {
+      .addCase(deletePost.pending, () => {
         console.log("pending");
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
-      .addCase(deletePost.rejected, (state, action) => {})
+      .addCase(deletePost.rejected, () => {})
       // 수정
-      .addCase(editPost.pending, (state, action) => {
+      .addCase(editPost.pending, () => {
         console.log("pending");
       })
       .addCase(editPost.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
-      .addCase(editPost.rejected, (state, action) => {});
+      .addCase(editPost.rejected, () => {});
   },
 });
 

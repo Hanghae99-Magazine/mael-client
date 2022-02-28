@@ -52,8 +52,8 @@ const Modify = () => {
       post_content: content,
     };
     dispatch(editPost(postData)).then((response) => {
-      console.log(response);
-      console.log(postData);
+      // console.log(response);
+      // console.log(postData);
       navigate("/");
     });
   };

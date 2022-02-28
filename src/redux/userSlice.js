@@ -34,9 +34,13 @@ export const login = createAsyncThunk(
   async (loginData, { rejectWithValue }) => {
     try {
       return await URL.post("/login", loginData).then((response) => {
-        console.log(response.data);
-        sessionStorage.setItem("mytoken", response.data.mytoken);
-        sessionStorage.setItem("nickname", response.data.nickname);
+        console.log(response);
+        if (response.status === 201) {
+          window.alert("로그인되었습니다.");
+          sessionStorage.setItem("mytoken", response.data.mytoken);
+          sessionStorage.setItem("nickname", response.data.nickname);
+          window.location.replace("/");
+        }
       });
     } catch (error) {
       console.error(error);
@@ -61,7 +65,7 @@ export const userReducer = createSlice({
   extraReducers: (builder) => {
     builder
       // 회원가입
-      .addCase(register.pending, (state, action) => {
+      .addCase(register.pending, (state) => {
         console.log("pending");
         state.registerDone = false;
       })
@@ -78,26 +82,22 @@ export const userReducer = createSlice({
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.isLoading = false;
         state.isLoggedin = true;
-        state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = true;
         state.loginError = action.payload;
       })
       // 로그아웃
-      .addCase(logOut.pending, (state, action) => {})
-      .addCase(logOut.fulfilled, (state, action) => {
+      .addCase(logOut.fulfilled, (state) => {
         state.isLoggedin = false;
       })
-      .addCase(logOut.rejected, (state, action) => {})
       // 로그인 체크
-      .addCase(loginCheck.pending, (state, action) => {})
-      .addCase(loginCheck.fulfilled, (state, action) => {
+      .addCase(loginCheck.fulfilled, (state) => {
         state.isLoggedin = true;
-      })
-      .addCase(loginCheck.rejected, (state, action) => {});
+      });
   },
 });
 

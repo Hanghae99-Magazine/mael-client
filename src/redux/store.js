@@ -9,4 +9,8 @@ export default configureStore({
     user: userReducer,
     like: likeReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

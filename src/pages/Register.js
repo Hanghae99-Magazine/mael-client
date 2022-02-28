@@ -33,10 +33,11 @@ const Register = () => {
     };
     return await dispatch(register(userData)).then((response) => {
       console.log(response);
-      window.alert(response.payload.data.msg);
       if (response.payload.status === 201) {
         window.alert("회원가입에 성공했습니다.");
         navigate("/login");
+      } else {
+        window.alert(response.payload.data.msg);
       }
     });
   };

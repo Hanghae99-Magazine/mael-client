@@ -196,8 +196,10 @@ register .text-input {
   color: #e3e3e3;
 }
 .card-image {
+  display: block;
   width: 100%;
   padding-bottom: 100%;
+  cursor: pointer;
 }
 .card-bottom {
   display: flex;
@@ -454,4 +456,83 @@ register .text-input {
 }
 .like-list-bottom .like-user {
   padding: 5px 10px;
+}
+
+/* 상세페이지 */
+.card-detail {
+  width: 100%;
+}
+
+.card-detail .contents {
+  background-color: #e3e3e3;
+}
+
+.detail-image {
+  width: 100%;
+}
+
+.detail-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 2px solid #005353;
+}
+.detail-top .nickname {
+  font-size: 1.5rem;
+}
+
+.detail-btn {
+  background-color: #e3e3e3;
+  border: 1px solid #005353;
+  border-radius: 4px;
+  color: #005353;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 4px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.detail-btn:hover {
+  background-color: #005353;
+  color: #e3e3e3;
+}
+.detail-mid {
+  padding: 10px;
+  border-bottom: 1px solid #7f9797;
+}
+.detail-content {
+  min-height: 100px;
+}
+.detail-date {
+  color: #a7a7a7;
+  font-size: 12px;
+}
+.detail-like {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.detail-btn-like {
+  border: none;
+  background-color: #e3e3e3;
+  color: crimson;
+  padding-right: 4px;
+}
+
+.detail-like-list {
+  background-color: #e3e3e3;
+  border: none;
+}
+
+.detail-comment {
+  padding: 10px;
+}
+.detail-comment .title {
+  font-size: 1rem;
+}
+
+.detail-comment .default-msg {
+  color: #a7a7a7;
+  font-size: 14px;
 }

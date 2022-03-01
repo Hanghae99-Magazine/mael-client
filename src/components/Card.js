@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Moment from "react-moment";
+import "moment/locale/ko";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../redux/postSlice";
 import { likeClick } from "../redux/likeSlice";
@@ -77,9 +78,14 @@ const Card = (props) => {
     }
   };
 
+  // 상세 버튼
+  const handleDetail = () => {
+    navigate(`${postId}/detail`, { state: props });
+  };
+
   // 수정 버튼
   const handleModify = () => {
-    navigate(`${postId}/modify`, { state: props });
+    navigate(`/modify`, { state: props });
   };
 
   // 삭제 버튼
@@ -121,6 +127,7 @@ const Card = (props) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          onClick={handleDetail}
         ></div>
         <div className="card-bottom">
           <button className="btn-like" onClick={handleToggle}>
@@ -156,6 +163,7 @@ const Card = (props) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          onClick={handleDetail}
         ></div>
         <div className="card-contents">
           <div className="card-content-top">
@@ -246,6 +254,7 @@ const Card = (props) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          onClick={handleDetail}
         ></div>
       </div>
     );

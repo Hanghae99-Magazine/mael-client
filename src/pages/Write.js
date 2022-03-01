@@ -25,6 +25,7 @@ const Write = () => {
 
   // input file hidden
   const fileRef = useRef();
+
   // testarea 자동 높이
   const heightRef = useRef();
 
@@ -44,12 +45,14 @@ const Write = () => {
     heightRef.current.style.height = heightRef.current.scrollHeight + "px";
   }, []);
 
+  // 이미지 프리뷰 보여주기
   useEffect(() => {
     if (file !== "")
       setPreview(<img className="img_preview" alt="" src={previewURL}></img>);
     return () => {};
   }, [file, previewURL]);
 
+  // 파일 선택하기
   const handleFileOnChange = (e) => {
     e.preventDefault();
     let file = e.target.files[0];
@@ -63,15 +66,23 @@ const Write = () => {
     if (file) reader.readAsDataURL(file);
   };
 
+  // 파일 선택 버튼
   const handleClick = (e) => {
     e.preventDefault();
     fileRef.current.click();
   };
 
+  // 포지션 선택 버튼
   const handlePosition = (e) => {
     setSelected(e.target.value);
   };
 
+  // 게시글 내용 작성하기
+  const postContent = (e) => {
+    setContent(e.target.value);
+  };
+
+  // 게시글 업로드 버튼
   const uploadFB = () => {
     let image = fileRef.current.files[0];
     const _upload = ref(storage, `images/${image.name}`);
@@ -92,10 +103,6 @@ const Write = () => {
         });
       });
     });
-  };
-
-  const postContent = (e) => {
-    setContent(e.target.value);
   };
 
   return (

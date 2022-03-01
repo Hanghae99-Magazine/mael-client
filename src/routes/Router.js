@@ -10,6 +10,7 @@ import Write from "../pages/Write";
 import DelComplete from "../pages/DelComplete";
 import Modify from "../pages/Modify";
 import LogOutComplete from "../pages/LogOutComplete";
+import Detail from "../pages/Detail";
 
 const AppRouter = () => {
   return (
@@ -17,7 +18,8 @@ const AppRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path=":postId/modify" element={<Modify />} />
+        <Route path="/:postId/detail" element={<Detail />} />
+        <Route path="modify" element={<Modify />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="write" element={<Write />} />
